@@ -23,16 +23,16 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(name = "nome", length = 100, nullable = false)
     private String name;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "email", length = 100, nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @Column(name = "telefone", length = 12, nullable = false)
     private String telefone;
 
-    @Column(nullable = false)
+    @Column(name = "endereco", length = 100, nullable = false)
     private String endereco;
 
 }
