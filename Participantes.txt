@@ -1,0 +1,3 @@
+3B-ESW
+Pedro Bernardo-Criou a Entidade Livro e o Repositorio Livro
+Lucas- Criou a Entidade Cliente e o Repositorio Cliente
