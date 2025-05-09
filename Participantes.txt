@@ -1,3 +1,4 @@
 3B-ESW
 Pedro Bernardo-Criou a Entidade Livro e o Repositorio Livro
 Lucas- Criou a Entidade Cliente e o Repositorio Cliente
+Jhonatan - entidade_multa, Repositorio_multa, Enum = Status_multa
