@@ -32,11 +32,12 @@ public class Multa {
 
     @OneToOne
     @JoinColumn(name = "emprestimo_id")
-    private Long empregoId;
+    private Emprestimo emprestimo;
 
     @Column(name = "valor", precision  = 18, scale = 2)
     private BigDecimal valor;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "status", length = 20, nullable = false)
     private StatusMulta status;
 
