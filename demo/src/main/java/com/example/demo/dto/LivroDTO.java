@@ -23,7 +23,7 @@ private String autor;
 
 @NotBlank(message = "A isbn é obrigatorio")
 @Size(min=10, max = 20, message = "A isbn do livro deve ter entre 10 a 20 caracteres")
-private String ibn;
+private String isbn;
 
 @NotBlank(message = "A quantidade tem que ser no minimo 1")
 private int quantidade;

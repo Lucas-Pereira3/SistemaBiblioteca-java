@@ -39,10 +39,15 @@ public class ClienteService {
 
     public ClienteDTO atualizar(Long id, ClienteDTO clienteDTO){
         Cliente clienteExistente = clienteRepository.findById(id)
-        .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado com ID: " + id));
+    .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado com ID: " + id));
 
-        clienteDTO.setId(id);
-        Cliente clienteAtualizado = clienteMapper.toEntity(clienteDTO);
-        return clienteMapper.toDTO(clienteRepository.save(clienteAtualizado));
+    clienteExistente.setNome(clienteDTO.getNome());
+    clienteExistente.setEmail(clienteDTO.getEmail());
+    clienteExistente.setTelefone(clienteDTO.getTelefone());
+    clienteExistente.setEndereco(clienteDTO.getEndereco());
+    clienteExistente.setDocumento(clienteDTO.getDocumento());
+
+    Cliente clienteAtualizado = clienteRepository.save(clienteExistente);
+    return clienteMapper.toDTO(clienteAtualizado);
     }
 }

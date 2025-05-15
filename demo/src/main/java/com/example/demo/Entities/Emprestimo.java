@@ -46,7 +46,7 @@ public class Emprestimo {
 
      @Enumerated(EnumType.STRING)
      @Column(name = "status", length = 30, nullable = false)
-     private StatusEmprestimo Emprestimo;
+     private StatusEmprestimo status;
 
      @OneToOne(mappedBy = "emprestimo", cascade = CascadeType.ALL, orphanRemoval = true)
      private Multa  multa;

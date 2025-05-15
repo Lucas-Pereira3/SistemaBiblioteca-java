@@ -24,7 +24,7 @@ public class Cliente {
     private Long id;
 
     @Column(name = "nome", length = 100, nullable = false)
-    private String name;
+    private String nome;
 
     @Column(name = "email", length = 100, nullable = false, unique = true)
     private String email;
@@ -35,4 +35,6 @@ public class Cliente {
     @Column(name = "endereco", length = 100, nullable = false)
     private String endereco;
 
+    @Column(name = "documento", length = 20, nullable = false, unique = true)
+    private String documento;
 }

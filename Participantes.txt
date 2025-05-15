@@ -1,6 +1,6 @@
 3B-ESW
 Pedro Bernardo-Criou a Entidade Livro , o Repositorio Livro, o LivroService, LivroMapper, LivroDTO e o Contoller do Livro
-Lucas- Criou a Entidade Cliente e o Repositorios e as controladoras e serviços do Cliente
-tambem fez a entidade emprestimo e o repositorio
+Lucas- foi responsável pela criação da entidade Cliente, incluindo seu repositório, controlador, serviço, Mapper e DTO.
+Além disso, ele desenvolveu a entidade Emprestimo, juntamente com seu repositório, o EmprestimoService, o EmprestimoMapper, o EmprestimoDTO e o EmprestimoController 
 Jhonatan - entidade_multa, Repositorio_multa, Enum = Status_multa
 João V. Fernandes - Criou entidade, e repositorio de Reserva e StatusReserva

@@ -9,5 +9,10 @@ import com.example.demo.Entities.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long> {
+    Optional<Cliente> findByid(Long id);
+    Optional<Cliente> findByNome(String Nome);
     Optional<Cliente> findByEmail(String email);
+    Optional<Cliente> findByTelefone(String Telefone);
+    Optional<Cliente> findByEndereco(String endereco);
+    Optional<Cliente> findByDocumento(String documento);
 }
