@@ -41,7 +41,7 @@ public class Reserva {
     private Livro livro;
 
     @Column (name = "data_reserva")
-    private LocalDate dataReserva;
+    private LocalDateTime dataReserva;
 
     @Enumerated (EnumType.STRING)
     @Column (name = "Status", length = 20, nullable = false)
