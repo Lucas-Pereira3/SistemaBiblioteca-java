@@ -27,5 +27,6 @@ public class ClienteDTO {
     private String endereco;
 
     @NotBlank(message = "O documento é obrigatorio")
+    @Size(min = 11, max = 11, message = "O CPF deve ter 11 caracteres")
     private String documento;
 }
