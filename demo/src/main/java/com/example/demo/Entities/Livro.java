@@ -30,7 +30,7 @@ private String titulo;
 @Column (name = "Autor",length = 100,nullable = false)
 private String autor;
 
-@Column (name = "isbn" ,length = 20,nullable = false)
+@Column (name = "isbn" ,length = 20,nullable = false, unique = true)
 private String isbn;
 
 @Column (name="Quantidade",nullable = false)

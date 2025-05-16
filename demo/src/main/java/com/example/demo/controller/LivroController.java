@@ -34,7 +34,7 @@ public class LivroController {
 private LivroService livroService;
 
 @Operation(summary = "Lista todos os livros")
-@GetMapping("/{id}")
+@GetMapping()
 public ResponseEntity<List<LivroDTO>> listarLivros(){
     List<LivroDTO> livros = livroService.listarTodos();
     return ResponseEntity.ok(livros);

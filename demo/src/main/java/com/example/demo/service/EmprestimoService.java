@@ -64,14 +64,7 @@ public class EmprestimoService {
                 .collect(Collectors.toList());
     }
 
-    public List<EmprestimoDTO> listarAtrasados() {
-        LocalDate hoje = LocalDate.now();
-        return emprestimoRepository
-                .findByDataDevolucaoPrevistaBeforeAndDataDevolucaoEfetivaIsNull(hoje)
-                .stream()
-                .map(emprestimoMapper::toDTO)
-                .collect(Collectors.toList());
-    }
+   
 
     public EmprestimoDTO registrarDevolucao(Long id) {
         Emprestimo emprestimo = emprestimoRepository.findById(id)

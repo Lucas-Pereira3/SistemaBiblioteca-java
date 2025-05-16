@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ClienteDTO;
+import com.example.demo.dto.LivroDTO;
 import com.example.demo.service.ClienteService;
 import com.example.demo.service.Utils.ApiResponse;
 import com.example.demo.service.Utils.ErrorResponse;
@@ -50,10 +51,13 @@ public class ClienteController {
     @PostMapping
     public ResponseEntity<ApiResponse<ClienteDTO>> criarCliente(@Valid @RequestBody ClienteDTO clienteDTO){
          try {
-            ClienteDTO salvo = clienteService.salvar(clienteDTO);
-            return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse<>(salvo));  
+            ClienteDTO savedCliente = clienteService.salvar(clienteDTO);
+            ApiResponse<ClienteDTO>response= new ApiResponse<>(savedCliente);
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);  
         } catch (IllegalArgumentException e){
-            return ResponseEntity.badRequest().body(new ApiResponse<>(new ErrorResponse("Erro", e.getMessage())));
+            ErrorResponse errorResponse= new ErrorResponse("Argumento inválido", e.getMessage());
+        ApiResponse<ClienteDTO> response= new ApiResponse<>(errorResponse);
+            return ResponseEntity.badRequest().body(response);
         }
     }
 

@@ -13,6 +13,6 @@ public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long>{
 
     List<Emprestimo> findByClienteId(Long clienteId);
     List<Emprestimo> findByStatus(String status);
-    List<Emprestimo> findByDataDevolucaoPrevistaBeforeAndDataDevolucaoEfetivaIsNull(LocalDate dataAtual);
+   
 
 }
