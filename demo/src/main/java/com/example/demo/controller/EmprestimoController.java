@@ -3,7 +3,6 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -19,7 +18,7 @@ import com.example.demo.service.Utils.ApiResponse;
 import com.example.demo.service.Utils.ErrorResponse;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+import org.springframework.web.bind.annotation.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 
@@ -33,14 +32,10 @@ public class EmprestimoController {
 
     @Operation(summary = "Registrar um novo empréstimo")
     @PostMapping
-    public ResponseEntity<ApiResponse<EmprestimoDTO>> registrarEmprestimo(@Valid @RequestBody EmprestimoDTO dto) {
-        try {
-            EmprestimoDTO salvo = emprestimoService.registrarEmprestimo(dto);
-            return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse<>(salvo));
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(new ApiResponse<>(new ErrorResponse("Erro", e.getMessage())));
-        }
-    }
+   public ResponseEntity<?> registrarEmprestimo(@Valid @RequestBody EmprestimoDTO dto) {
+    return ResponseEntity.ok(emprestimoService.registrarEmprestimo(dto));
+
+}
 
     @Operation(summary = "Atualizar status do empréstimo")
     @PatchMapping("/{id}/status")

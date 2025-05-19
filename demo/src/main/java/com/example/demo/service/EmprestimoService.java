@@ -33,22 +33,27 @@ public class EmprestimoService {
     @Autowired
     private EmprestimoMapper emprestimoMapper;
 
-    public EmprestimoDTO registrarEmprestimo(EmprestimoDTO dto) {
-        Cliente cliente = clienteRepository.findById(dto.getClienteId())
-                .orElseThrow(() -> new IllegalArgumentException("Cliente não encontrado com ID: " + dto.getClienteId()));
-
-        Livro livro = livroRepository.findById(dto.getLivroId())
-                .orElseThrow(() -> new IllegalArgumentException("Livro não encontrado com ID: " + dto.getLivroId()));
-
-        Emprestimo emprestimo = new Emprestimo();
-        emprestimo.setCliente(cliente);
-        emprestimo.setLivro(livro);
-        emprestimo.setDataEmprestimo(LocalDate.now());
-        emprestimo.setDataDevolucao(dto.getDataDevolucao());
-        emprestimo.setStatus(StatusEmprestimo.EM_ANDAMENTO);
-
-        return emprestimoMapper.toDTO(emprestimoRepository.save(emprestimo));
+    public Emprestimo registrarEmprestimo(EmprestimoDTO dto) {
+    if (dto.getClienteId() == null || dto.getLivroId() == null) {
+        throw new IllegalArgumentException("clienteId e livroId não podem ser nulos");
     }
+
+    Cliente cliente = clienteRepository.findById(dto.getClienteId())
+        .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+
+    Livro livro = livroRepository.findById(dto.getLivroId())
+        .orElseThrow(() -> new RuntimeException("Livro não encontrado"));
+
+    Emprestimo emprestimo = new Emprestimo();
+    emprestimo.setCliente(cliente);
+    emprestimo.setLivro(livro);
+    emprestimo.setDataEmprestimo(dto.getDataEmprestimo());
+    emprestimo.setDataDevolucao(dto.getDataDevolucao());
+    emprestimo.setStatus(StatusEmprestimo.valueOf(dto.getStatus().toUpperCase()));
+
+
+    return emprestimoRepository.save(emprestimo);
+}
 
     public EmprestimoDTO atualizarStatus(Long id, String status) {
         Emprestimo emprestimo = emprestimoRepository.findById(id)
