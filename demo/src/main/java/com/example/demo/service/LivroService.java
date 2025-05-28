@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.Entities.Disponibilidade;
 import com.example.demo.Entities.Livro;
 import com.example.demo.dto.LivroDTO;
 import com.example.demo.mapper.LivroMapper;
@@ -21,7 +22,7 @@ public class LivroService {
     private LivroMapper livroMapper;
 
     public List<LivroDTO> listarTodos(){
-        return livroMapper.toDTOList(livroRepository.findAll());
+        return livroMapper.toDTOList(livroRepository.findByDisponibilidade(Disponibilidade.DISPONIVEL));
     }
 
     public Optional<LivroDTO> buscarPorID(Long id){
@@ -35,5 +36,19 @@ public class LivroService {
 
     public void deletar(Long id){
         livroRepository.deleteById(id);
+    }
+
+    public LivroDTO atualizar(Long id,LivroDTO livroDTO){
+        Livro livroExistente= livroRepository.findById(id)
+        .orElseThrow(()-> new IllegalArgumentException("Livro não encontrado com ID: "+id));
+        livroExistente.setTitulo(livroDTO.getTitulo());
+        livroExistente.setAutor(livroDTO.getAutor());
+        livroExistente.setIsbn(livroDTO.getIsbn());
+        livroExistente.setEditora(livroDTO.getEditora());
+        livroExistente.setAno_publicação(livroDTO.getAno_publicação());
+        livroExistente.setDisponibilidade(livroDTO.getDisponibilidade());
+
+        Livro livroAtualizado= livroRepository.save(livroExistente);
+        return livroMapper.toDTO(livroAtualizado);
     }
 }

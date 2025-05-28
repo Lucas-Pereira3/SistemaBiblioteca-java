@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
 import com.example.demo.dto.LivroDTO;
 import com.example.demo.service.LivroService;
 import com.example.demo.service.Utils.ApiResponse;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
@@ -33,7 +35,7 @@ public class LivroController {
 @Autowired
 private LivroService livroService;
 
-@Operation(summary = "Lista todos os livros")
+@Operation(summary = "Lista todos os livros que estiverem disponivel")
 @GetMapping()
 public ResponseEntity<List<LivroDTO>> listarLivros(){
     List<LivroDTO> livros = livroService.listarTodos();
@@ -70,6 +72,7 @@ public ResponseEntity<ApiResponse<LivroDTO>> criarLivro(@Valid @RequestBody Livr
     }
 }
 
+
 @Operation(summary = "Deleta um livro")
 @DeleteMapping("/{id}")
 public ResponseEntity<Void> deletarLivro(@PathVariable Long id){
@@ -77,4 +80,14 @@ public ResponseEntity<Void> deletarLivro(@PathVariable Long id){
     return ResponseEntity.noContent().build();
 }
 
+@Operation(summary = "Atualiza um livro", description = "Atualiza um livro existente")
+@PutMapping("/{id}")
+public ResponseEntity<ApiResponse<LivroDTO>>atualizarLivro(@PathVariable Long id, @Valid @RequestBody LivroDTO livroDTO){
+    try{
+        LivroDTO atualizado= livroService.atualizar(id, livroDTO);
+        return ResponseEntity.ok(new ApiResponse<>(atualizado));
+    }catch(IllegalArgumentException e){
+        return ResponseEntity.badRequest().body(new ApiResponse<>(new ErrorResponse("Erro", e.getMessage())));
+    }
+}
 }

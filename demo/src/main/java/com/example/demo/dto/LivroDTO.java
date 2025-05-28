@@ -2,7 +2,10 @@ package com.example.demo.dto;
 
 import jakarta.validation.constraints.Size;
 
+import java.time.LocalDate;
+
 import com.example.demo.Entities.CategoriaLivro;
+import com.example.demo.Entities.Disponibilidade;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -31,4 +34,14 @@ private int quantidade;
 @NotBlank(message = "A categoria do livro é obrigatoria")
 @Size(min = 3, max = 20, message = "A categoria deve ter entre 3 a 20 caracteres")
 private CategoriaLivro categoria;
+
+@NotBlank(message = "O nome da Editora é obrigatorio")
+@Size(min=3, max=100)
+private String editora;
+
+@NotBlank(message = "O ano de publicação do livro é obrigatorio")
+private LocalDate ano_publicação;
+
+@NotBlank(message="A disponibilidade do livro é obrigatoria")
+private Disponibilidade disponibilidade;
 }

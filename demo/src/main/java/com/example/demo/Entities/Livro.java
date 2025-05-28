@@ -1,5 +1,7 @@
 package com.example.demo.Entities;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -39,4 +41,14 @@ private int quantidade;
 @Enumerated(EnumType.STRING)
 @Column(name="Categoria",length = 30,nullable = false)
 private CategoriaLivro Categoria;
+
+@Column(name="Editora",length = 100,nullable = false)
+private String editora;
+
+@Column(name = "Ano de publicação")
+private LocalDate ano_publicação;
+
+@Enumerated(EnumType.STRING)
+@Column(name = "Disponibilidade",length = 30,nullable = false)
+private Disponibilidade disponibilidade;
 }
