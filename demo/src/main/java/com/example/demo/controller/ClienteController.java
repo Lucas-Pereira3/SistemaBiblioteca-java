@@ -39,12 +39,13 @@ public class ClienteController {
         return ResponseEntity.ok(clienteService.listarTodos());
     }
 
-    @Operation(summary = "Lista os Emprestimos atrassados", description = "Retorna os detalhes de um cliente específico.")
-    @GetMapping("/atrasados")
-    public ResponseEntity<List<EmprestimoDTO>> listarAtrasados() {
-    List<EmprestimoDTO> atrasados = EmprestimoRepository.listarAtrasados();
-    return ResponseEntity.ok(atrasados);
-}
+    @Operation(summary = "Busca cliente po ID", description = "Retorna os detalhes de um cliente específico.")
+    @GetMapping("/{id}")
+    public ResponseEntity<ClienteDTO> buscarPorId(@PathVariable Long id){
+        Optional<ClienteDTO> cliente = clienteService.buscarPorId(id);
+        return cliente.map(ResponseEntity::ok)
+                    .orElse(ResponseEntity.notFound().build());
+    }
     
     @Operation(summary = "Criar novo cliente", description = "Registra um novo cliente no sistema.")
     @PostMapping
