@@ -1,6 +1,7 @@
 package com.example.demo.Entities;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -50,4 +51,14 @@ public class Emprestimo {
 
      @OneToOne(mappedBy = "emprestimo", cascade = CascadeType.ALL, orphanRemoval = true)
      private Multa  multa;
+
+     public void definirStatus(){
+        LocalDate hoje= LocalDate.now();
+
+        if(dataDevolucao !=null && dataDevolucao.isBefore(hoje)){
+            this.status= StatusEmprestimo.ATRASADO;
+        }else{
+            this.status= StatusEmprestimo.EM_ANDAMENTO;
+        }
+     }
 }

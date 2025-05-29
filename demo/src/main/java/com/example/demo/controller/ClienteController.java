@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ClienteDTO;
+import com.example.demo.dto.EmprestimoDTO;
 import com.example.demo.service.ClienteService;
 import com.example.demo.service.Utils.ApiResponse;
 import com.example.demo.service.Utils.ErrorResponse;
@@ -31,20 +32,19 @@ public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
-
+    
     @Operation(summary = "Lista todos os clientes")
     @GetMapping
     public ResponseEntity<List<ClienteDTO>> listarClientes(){
         return ResponseEntity.ok(clienteService.listarTodos());
     }
 
-    @Operation(summary = "Busca cliente po ID", description = "Retorna os detalhes de um cliente específico.")
-    @GetMapping("/{id}")
-    public ResponseEntity<ClienteDTO> buscarPorId(@PathVariable Long id){
-        Optional<ClienteDTO> cliente = clienteService.buscarPorId(id);
-        return cliente.map(ResponseEntity::ok)
-                    .orElse(ResponseEntity.notFound().build());
-    }
+    @Operation(summary = "Lista os Emprestimos atrassados", description = "Retorna os detalhes de um cliente específico.")
+    @GetMapping("/atrasados")
+    public ResponseEntity<List<EmprestimoDTO>> listarAtrasados() {
+    List<EmprestimoDTO> atrasados = EmprestimoRepository.listarAtrasados();
+    return ResponseEntity.ok(atrasados);
+}
     
     @Operation(summary = "Criar novo cliente", description = "Registra um novo cliente no sistema.")
     @PostMapping

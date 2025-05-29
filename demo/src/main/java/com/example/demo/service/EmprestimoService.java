@@ -1,8 +1,10 @@
 package com.example.demo.service;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +51,7 @@ public class EmprestimoService {
     emprestimo.setLivro(livro);
     emprestimo.setDataEmprestimo(dto.getDataEmprestimo());
     emprestimo.setDataDevolucao(dto.getDataDevolucao());
-    emprestimo.setStatus(StatusEmprestimo.valueOf(dto.getStatus().toUpperCase()));
+    emprestimo.definirStatus();
 
 
     return emprestimoRepository.save(emprestimo);
@@ -81,7 +83,7 @@ public class EmprestimoService {
         return emprestimoMapper.toDTO(emprestimoRepository.save(emprestimo));
     }
 
-    public Optional<EmprestimoDTO> buscarPorId(Long id) {
-        return emprestimoRepository.findById(id).map(emprestimoMapper::toDTO);
+    public List<EmprestimoDTO> listarAtrasados() {
+        return emprestimoRepository.findByStatus(StatusEmprestimo.ATRASADO).stream().map(emprestimoMapper::toDTO).collect(Collectors.toList());
     }
 }
