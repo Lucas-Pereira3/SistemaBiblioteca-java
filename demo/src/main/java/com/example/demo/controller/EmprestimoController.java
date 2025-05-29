@@ -73,11 +73,10 @@ public class EmprestimoController {
         }
     }
 
-    @Operation(summary = "Buscar empréstimo por ID")
-    @GetMapping("/{id}")
-    public ResponseEntity<EmprestimoDTO> buscarPorId(@PathVariable Long id) {
-        return emprestimoService.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
+    @Operation(summary="Lista todos os emprestimos que estão atrassados")
+    @GetMapping("/atrasados")
+    public ResponseEntity<List<EmprestimoDTO>> listarAtrasados() {
+    List<EmprestimoDTO> atrasados = emprestimoService.listarAtrasados();
+    return ResponseEntity.ok(atrasados);
+}
 }
