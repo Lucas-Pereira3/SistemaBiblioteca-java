@@ -49,8 +49,7 @@ public class Emprestimo {
      @Column(name = "status", length = 30, nullable = false)
      private StatusEmprestimo status;
 
-     @OneToOne(mappedBy = "emprestimo", cascade = CascadeType.ALL, orphanRemoval = true)
-     private Multa  multa;
+    
 
      public void definirStatus(){
         LocalDate hoje= LocalDate.now();

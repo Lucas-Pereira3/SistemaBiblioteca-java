@@ -1,6 +1,8 @@
 package com.example.demo.Entities;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -43,5 +45,14 @@ public class Multa {
 
     @Column(name = "data_pagamento")
     private LocalDateTime dataPagamento;
+
+    public BigDecimal valormulta(){
+        int dias= Period.between(emprestimo.getDataDevolucao(), LocalDate.now()).getDays();
+        if(dias>1){
+            BigDecimal multapordia= new BigDecimal("2.50");
+            return multapordia.multiply(BigDecimal.valueOf(dias));
+        }
+        return BigDecimal.ZERO;
+    }
 
 }
