@@ -55,13 +55,6 @@ public class EmprestimoController {
         return ResponseEntity.ok(lista);
     }
 
-    /*@Operation(summary = "Listar empréstimos atrasados")
-    @GetMapping("/atrasados")
-    public ResponseEntity<List<EmprestimoDTO>> listarAtrasados() {
-        //List<EmprestimoDTO> atrasados = emprestimoService.listarAtrasados();
-        return ResponseEntity.ok(atrasados);
-    }*/
-
     @Operation(summary = "Registrar devolução de um livro")
     @PatchMapping("/{id}/devolver")
     public ResponseEntity<ApiResponse<EmprestimoDTO>> registrarDevolucao(@PathVariable Long id) {
