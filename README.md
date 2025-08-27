@@ -32,14 +32,19 @@ Ele permite o controle eficiente de livros, usuários, empréstimos e devoluçõ
 ---
 
 ## 🚀 Como Executar o Projeto
+---
 
 ### 1. Clone o repositório:
 
 git clone https://github.com/PHBmarques/Seminario-java.git
 
+---
+
 ### 2. Acesse o diretório do projeto:
 
 cd Seminario-java
+
+---
 
 ### 3. Configure o banco de dados:
 
@@ -56,9 +61,13 @@ spring.jpa.hibernate.ddl-auto=update
 
 💡 Lembre-se de criar o banco de dados no MySQL ou PostgreSQL antes de executar o projeto.
 
+---
+
 ### 4. Execute a aplicação:
 
 mvn spring-boot:run
+
+---
 
 ### 5. Acesse no navegador:
 
@@ -73,3 +82,5 @@ http://localhost:8080
 | DELETE | /livros/{id} | Remover um livro                  |
 | POST   | /emprestimos | Registrar empréstimo              |
 | POST   | /devolucoes  | Registrar devolução               |
+
+---
