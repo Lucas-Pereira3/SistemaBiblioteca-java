@@ -1,57 +1,72 @@
-Seminário Java - Sistema de Biblioteca com Spring Boot
-📚 Descrição do Projeto
-Este projeto é um sistema de gerenciamento de biblioteca desenvolvido em Spring Boot que permite o controle de livros, empréstimos, usuários e devoluções de forma eficiente e organizada.
+# 📚 Seminário Java - Sistema de Biblioteca com Spring Boot
 
-✨ Funcionalidades Principais
-Gestão de Livros: Cadastro, consulta, atualização e exclusão de livros
+## 🧾 Descrição do Projeto
 
-Controle de Usuários: Registro e administração de usuários da biblioteca
+Este projeto é um **sistema de gerenciamento de biblioteca** desenvolvido com **Spring Boot**.  
+Ele permite o controle eficiente de livros, usuários, empréstimos e devoluções, com geração de relatórios relevantes para a administração da biblioteca.
 
-Sistema de Empréstimos: Registro e acompanhamento de empréstimos de livros
+---
 
-Devoluções: Controle de devoluções e cálculo de multas por atraso
+## ✨ Funcionalidades Principais
 
-Relatórios: Geração de relatórios de livros mais emprestados, usuários com mais empréstimos, etc.
+- 📖 **Gestão de Livros**: cadastro, consulta, atualização e exclusão  
+- 👥 **Controle de Usuários**: registro e administração de usuários  
+- 🔁 **Sistema de Empréstimos**: controle e acompanhamento de livros emprestados  
+- 📦 **Devoluções**: cálculo de multas por atraso e registro da devolução  
+- 📊 **Relatórios**: livros mais emprestados, usuários com mais movimentações
 
-🛠️ Tecnologias Utilizadas
-Java Spring Boot - Framework principal
+---
 
-Spring Data JPA - Persistência de dados
+## 🛠️ Tecnologias Utilizadas
 
-Spring Security - Autenticação e autorização
+| Tecnologia       | Descrição                                  |
+|------------------|----------------------------------------------|
+| Java             | Linguagem principal                         |
+| Spring Boot      | Framework para criação da API REST          |
+| Spring Data JPA  | Abstração da camada de persistência         |
+| Spring Security  | Autenticação e autorização                  |
+| MySQL/PostgreSQL | Banco de dados relacional                   |
+| Maven            | Gerenciador de dependências                 |
+| Thymeleaf        | Template Engine (para views, se usado)      |
 
-Banco de Dados - MySQL/PostgreSQL (dependendo da configuração)
+---
 
-Maven/Gradle - Gerenciamento de dependências
+## 🚀 Como Executar o Projeto
 
-Thymeleaf - Template engine para as views (se aplicável)
+### 1. Clone o repositório:
 
-🚀 Como Executar o Projeto
-Clone o repositório:
-
-bash
 git clone https://github.com/PHBmarques/Seminario-java.git
-Configure o banco de dados no arquivo application.properties
 
-Execute a aplicação:
+### 2. Acesse o diretório do projeto:
 
-bash
+cd Seminario-java
+
+### 3. Configure o banco de dados:
+
+No arquivo src/main/resources/application.properties, edite as propriedades do banco:
+
+spring.datasource.url=jdbc:mysql://localhost:3306/biblioteca
+spring.datasource.username=SEU_USUARIO
+spring.datasource.password=SUA_SENHA
+spring.jpa.hibernate.ddl-auto=update
+
+
+💡 Lembre-se de criar o banco de dados no MySQL ou PostgreSQL antes de executar o projeto.
+
+### 4. Execute a aplicação:
+
 mvn spring-boot:run
-Acesse a aplicação em: http://localhost:8080
 
-📋 Estrutura do Projeto
-text
-src/
-├── main/
-│   ├── java/
-│   │   └── com/
-│   │       └── biblioteca/
-│   │           ├── controller/     # Controladores REST
-│   │           ├── model/          # Entidades JPA
-│   │           ├── repository/     # Interfaces de repositório
-│   │           ├── service/        # Lógica de negócio
-│   │           └── config/         # Configurações do Spring
-│   └── resources/
-│       ├── static/                 # Arquivos estáticos (CSS, JS)
-│       ├── templates/              # Templates Thymeleaf
-│       └── application.properties  # Configurações da aplicação
+### 5. Acesse no navegador:
+
+http://localhost:8080
+
+🧠 Exemplo de Endpoints REST
+| Método | Endpoint     | Descrição                         |
+| ------ | ------------ | --------------------------------- |
+| GET    | /livros      | Listar todos os livros            |
+| POST   | /livros      | Cadastrar um novo livro           |
+| PUT    | /livros/{id} | Atualizar informações de um livro |
+| DELETE | /livros/{id} | Remover um livro                  |
+| POST   | /emprestimos | Registrar empréstimo              |
+| POST   | /devolucoes  | Registrar devolução               |
