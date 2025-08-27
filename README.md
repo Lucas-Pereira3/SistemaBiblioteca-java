@@ -46,8 +46,11 @@ cd Seminario-java
 No arquivo src/main/resources/application.properties, edite as propriedades do banco:
 
 spring.datasource.url=jdbc:mysql://localhost:3306/biblioteca
+
 spring.datasource.username=SEU_USUARIO
+
 spring.datasource.password=SUA_SENHA
+
 spring.jpa.hibernate.ddl-auto=update
 
 
